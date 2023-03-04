@@ -19,6 +19,10 @@ describe Department do
     it 'has employees that starts as empty by default' do
       expect(@customer_service.employees).to eq([])
     end
+
+    it 'has expenses that start at zero by default' do
+      expect(@customer_service.expenses).to eq(0)
+    end
   end
 
   describe '#hire' do
@@ -31,6 +35,17 @@ describe Department do
       expect(@customer_service.employees).to eq([@bobbi, @aaron])
       expect(@customer_service.employees.count).to eq(2)
       expect(@customer_service.employees[0]).to be_a Employee
+    end
+  end
+
+  describe '#expense' do
+    it 'can track department expenses' do
+      expect(@customer_service.expenses).to eq(0)
+
+      @customer_service.expense(100)
+      @customer_service.expense(25)
+
+      expect(@customer_service.expenses).to eq(125)
     end
   end
 end
