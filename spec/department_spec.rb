@@ -22,7 +22,7 @@ describe Department do
   end
 
   describe '#hire' do
-    it 'can add employees to the department' do
+    it 'can add employee objects to the department' do
       expect(@customer_service.employees).to eq([])
 
       @customer_service.hire(@bobbi)
@@ -30,6 +30,7 @@ describe Department do
 
       expect(@customer_service.employees).to eq([@bobbi, @aaron])
       expect(@customer_service.employees.count).to eq(2)
+      expect(@customer_service.employees[0]).to be_a Employee
     end
   end
 end
