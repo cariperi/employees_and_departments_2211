@@ -8,4 +8,8 @@ class Employee
     @age = details[:age].to_i
     @salary = details[:salary].delete("$").to_i
   end
+
+  def give_raise(amount)
+    @salary += amount
+  end
 end
