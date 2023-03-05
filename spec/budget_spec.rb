@@ -22,4 +22,16 @@ describe Budget do
       expect(@budget.departments).to eq([])
     end
   end
+
+  describe '#add_department' do
+    it 'can add departments to the budget' do
+      expect(@budget.departments).to eq([])
+
+      @budget.add_department(@customer_service)
+      @budget.add_department(@parks)
+
+      expect(@budget.departments).to eq([@customer_service, @parks])
+      expect(@budget.departments.count).to eq(2)
+    end
+  end
 end
