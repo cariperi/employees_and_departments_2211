@@ -35,4 +35,19 @@ describe Budget do
       expect(@budget.departments[0]).to be_a Department
     end
   end
+
+  describe '#departments_with_low_expenses' do
+    it 'can list departments with expenses less than $500' do
+      @budget.add_department(@customer_service)
+      @budget.add_department(@parks)
+
+      @customer_service.expense(300)
+      @customer_service.expense(400)
+      @parks.expense(250)
+
+      expect(@customer_service.expenses).to eq(700)
+      expect(@parks.expenses).to eq(250)
+      expect(@budget.departments_with_low_expenses).to eq([@parks])
+    end
+  end
 end
