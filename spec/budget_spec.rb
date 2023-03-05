@@ -50,4 +50,20 @@ describe Budget do
       expect(@budget.departments_with_low_expenses).to eq([@parks])
     end
   end
+
+  describe '#get_salaries' do
+    it 'can list the salaries of all of its employees' do
+      @budget.add_department(@customer_service)
+      @budget.add_department(@parks)
+
+      @customer_service.hire(@bobbi)
+      @parks.hire(@aaron)
+
+      expect(@budget.get_salaries).to be_a Hash
+      expect(@budget.get_salaries.keys).to eq(['Bobbi Jaeger', 'Aaron Tanaka'])
+      expect(@budget.get_salaries.values).to eq([100000, 90000])
+      expect(@budget.get_salaries['Bobbi Jaeger']).to eq(100000)
+      expect(@budget.get_salaries['Aaron Tanaka']).to eq(90000)
+    end
+  end
 end
