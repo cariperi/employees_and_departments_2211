@@ -32,6 +32,7 @@ describe Budget do
 
       expect(@budget.departments).to eq([@customer_service, @parks])
       expect(@budget.departments.count).to eq(2)
+      expect(@budget.departments[0]).to be_a Department
     end
   end
 end
