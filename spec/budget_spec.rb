@@ -7,6 +7,7 @@ describe Budget do
     @parks = Department.new('Parks')
     @bobbi = Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"})
     @aaron = Employee.new({name: "Aaron Tanaka", age: "25", salary: "90000"})
+    @john = Employee.new({name: "John Doe", age: "32", salary: "80000"})
   end
 
   describe 'initialize' do
@@ -58,12 +59,14 @@ describe Budget do
 
       @customer_service.hire(@bobbi)
       @parks.hire(@aaron)
+      @parks.hire(@john)
 
       expect(@budget.get_salaries).to be_a Hash
-      expect(@budget.get_salaries.keys).to eq(['Bobbi Jaeger', 'Aaron Tanaka'])
-      expect(@budget.get_salaries.values).to eq([100000, 90000])
+      expect(@budget.get_salaries.keys).to eq(['Bobbi Jaeger', 'Aaron Tanaka', 'John Doe'])
+      expect(@budget.get_salaries.values).to eq([100000, 90000, 80000])
       expect(@budget.get_salaries['Bobbi Jaeger']).to eq(100000)
       expect(@budget.get_salaries['Aaron Tanaka']).to eq(90000)
+      expect(@budget.get_salaries['John Doe']).to eq(80000)
     end
   end
 end
