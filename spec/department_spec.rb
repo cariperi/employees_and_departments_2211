@@ -23,6 +23,10 @@ describe Department do
     it 'has expenses that start at zero by default' do
       expect(@customer_service.expenses).to eq(0)
     end
+
+    it 'has a way to track expenses by employee' do
+      expect(@customer_service.expenses_by_employee).to eq({})
+    end
   end
 
   describe '#hire' do
@@ -42,10 +46,23 @@ describe Department do
     it 'can track department expenses' do
       expect(@customer_service.expenses).to eq(0)
 
-      @customer_service.expense(100)
-      @customer_service.expense(25)
+      @customer_service.hire(@bobbi)
+      @customer_service.hire(@aaron)
+      @customer_service.expense(100, @bobbi)
+      @customer_service.expense(25, @aaron)
 
       expect(@customer_service.expenses).to eq(125)
+    end
+
+    it 'can associate an employee with the expense' do
+      @customer_service.hire(@bobbi)
+      @customer_service.hire(@aaron)
+      @customer_service.expense(100, @bobbi)
+      @customer_service.expense(25, @aaron)
+
+      expect(@customer_service.expenses_by_employee.keys).to eq([@bobbi, @aaron])
+      expect(@customer_service.expenses_by_employee.values).to eq([100, 25])
+      expect(@customer_service.expenses_by_employee[@bobbi]).to eq(100)
     end
   end
 end
