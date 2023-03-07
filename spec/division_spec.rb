@@ -35,4 +35,19 @@ describe Division do
       expect(@division.departments[0]).to be_a Department
     end
   end
+
+  describe '#departments_with_multiple_employees' do
+    it 'can return a list of departments with more than 1 employee' do
+      @customer_service.hire(@bobbi)
+      @parks.hire(@aaron)
+      @parks.hire(@james)
+
+      @division.add_department(@customer_service)
+      @division.add_department(@parks)
+
+      expect(@division.departments.count).to eq(2)
+      expect(@division.departments_with_multiple_employees.count).to eq(1)
+      expect(@division.departments_with_multiple_employees).to eq([@parks])
+    end
+  end
 end
