@@ -50,4 +50,17 @@ describe Division do
       expect(@division.departments_with_multiple_employees).to eq([@parks])
     end
   end
+
+  describe '#list_all_employee_names' do
+    it 'can return a list of all employee names across departments' do
+      @customer_service.hire(@bobbi)
+      @parks.hire(@aaron)
+      @parks.hire(@james)
+
+      @division.add_department(@customer_service)
+      @division.add_department(@parks)
+
+      expect(@division.list_all_employee_names).to eq(["Bobbi Jaeger", "Aaron Tanaka", "James Doe"])
+    end
+  end
 end
