@@ -10,4 +10,8 @@ class Division
   def add_department(department)
     @departments << department
   end
+
+  def departments_with_multiple_employees
+    @departments.select{|department| department.employees.count > 1}
+  end
 end
