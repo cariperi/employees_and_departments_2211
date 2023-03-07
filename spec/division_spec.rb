@@ -23,4 +23,16 @@ describe Division do
       expect(@division.departments).to eq([])
     end
   end
+
+  describe '#add_department' do
+    it 'can add department objects to a division' do
+      expect(@division.departments).to eq([])
+
+      @division.add_department(@customer_service)
+      @division.add_department(@parks)
+
+      expect(@division.departments).to eq([@customer_service, @parks])
+      expect(@division.departments[0]).to be_a Department
+    end
+  end
 end
