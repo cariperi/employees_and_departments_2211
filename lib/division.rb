@@ -14,4 +14,14 @@ class Division
   def departments_with_multiple_employees
     @departments.select{|department| department.employees.count > 1}
   end
+
+  def list_all_employee_names
+    names = []
+    @departments.each do |department|
+      department.employees.each do |employee|
+        names << employee.name
+      end
+    end
+    names
+  end
 end
