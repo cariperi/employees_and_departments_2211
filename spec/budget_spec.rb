@@ -42,9 +42,12 @@ describe Budget do
       @budget.add_department(@customer_service)
       @budget.add_department(@parks)
 
-      @customer_service.expense(300)
-      @customer_service.expense(400)
-      @parks.expense(250)
+      @customer_service.hire(@bobbi)
+      @parks.hire(@aaron)
+
+      @customer_service.expense(300, @bobbi)
+      @customer_service.expense(400, @bobbi)
+      @parks.expense(250, @aaron)
 
       expect(@customer_service.expenses).to eq(700)
       expect(@parks.expenses).to eq(250)
